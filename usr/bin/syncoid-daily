@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# mount the USB drive
+zfs mount backups
+
+# sync the root pool to the USB drive
+syncoid mypool backups/mypool
+
+# unmount the USB drive
+zfs unmount backups
+
+# spin down the USB disk for low-power and extended disk life
+hdparm -B 50 -S 36 /dev/disk/by-id/usb-WD_My_Passport_0820_575838314134353739524A43-0:0
+
